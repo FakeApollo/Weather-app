@@ -15,27 +15,7 @@ export default function Home() {
     setMounted(true);
   }, []);
 
-  const getWeatherIcon = (weatherMain) => {
-    const iconMap = {
-      'Clear': 'clear.svg',
-      'Clouds': 'few-clouds.svg',
-      'Rain': 'rain.svg',
-      'Drizzle': 'rain.svg',
-      'Thunderstorm': 'thunderstorm.svg',
-      'Snow': 'snow.svg',
-      'Mist': 'mist.svg',
-      'Smoke': 'mist.svg',
-      'Haze': 'mist.svg',
-      'Dust': 'wind.svg',
-      'Fog': 'mist.svg',
-      'Sand': 'wind.svg',
-      'Ash': 'mist.svg',
-      'Squall': 'wind.svg',
-      'Tornado': 'wind.svg'
-    };
-    
-    return iconMap[weatherMain] || 'clear.svg';
-  };
+  
 
   const handleCheck = async () => {
     if (!city) return;
@@ -94,56 +74,42 @@ export default function Home() {
             </button>
           </div>
 
-          <div className={styles.weatherInfo}>
-            <h2 className={styles.weatherTitle}>Weather Information</h2>
-            
-            {weather && (
-              <>
-                <div className={styles.cityName}>
-                  {weather.name}, {weather.sys.country}
+          {error && (
+            <div className={styles.error}>
+              {error}
+            </div>
+          )}
+
+          {weather && (
+            <div className={styles.weatherInfo}>
+              <div className={styles.cityName}>
+                {weather.name}, {weather.sys.country}
+              </div>
+              
+              <div className={styles.mainTemp}>
+                  {Math.round(weather.main.temp)}°C
                 </div>
-                <div className={styles.weatherIconContainer}>
-                  <img 
-                    src={`/icons/${getWeatherIcon(weather.weather[0].main)}`}
-                    alt={weather.weather[0].description}
-                    className={styles.weatherIcon}
-                  />
-                  <div className={styles.mainTemp}>
-                    {Math.round(weather.main.temp)}°C
-                  </div>
+
+              <div className={styles.weatherGrid}>
+                <div className={styles.weatherRow}>
+                  <strong>Temperature</strong> 
+                  <span>{`${Math.round(weather.main.temp)}°C`}</span>
                 </div>
-              </>
-            )}
-            
-            {error && (
-              <div className={styles.error}>
-                {error}
-              </div>
-            )}
-            
-            <div className={styles.weatherGrid}>
-              <div className={styles.weatherRow}>
-                <strong>Temperature:</strong> 
-                <span>{weather ? `${Math.round(weather.main.temp)}°C` : '--°C'}</span>
-              </div>
-              <div className={styles.weatherRow}>
-                <strong>Humidity:</strong> 
-                <span>{weather ? `${weather.main.humidity}%` : '--%'}</span>
-              </div>
-              <div className={styles.weatherRow}>
-                <strong>Weather:</strong> 
-                <span>{weather ? weather.weather[0].description : '--'}</span>
-              </div>
-              <div className={styles.weatherRow}>
-                <strong>Wind Speed:</strong> 
-                <span>{weather ? `${weather.wind.speed} m/s` : '-- m/s'}</span>
-              </div>
-              <div className={styles.weatherRow}>
-                <strong>Pressure:</strong> 
-                <span>{weather ? `${weather.main.pressure} hPa` : '-- hPa'}</span>
+                <div className={styles.weatherRow}>
+                  <strong>Humidity</strong> 
+                  <span>{`${weather.main.humidity}%`}</span>
+                </div>
+                <div className={styles.weatherRow}>
+                  <strong>Weather</strong> 
+                  <span style={{textTransform: 'capitalize'}}>{weather.weather[0].description}</span>
+                </div>
+                <div className={styles.weatherRow}>
+                  <strong>Wind Speed</strong> 
+                  <span>{`${weather.wind.speed} m/s`}</span>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
