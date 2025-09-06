@@ -15,6 +15,28 @@ export default function Home() {
     setMounted(true);
   }, []);
 
+  const getWeatherIcon = (weatherMain) => {
+    const iconMap = {
+      'Clear': 'clear.svg',
+      'Clouds': 'few-clouds.svg',
+      'Rain': 'rain.svg',
+      'Drizzle': 'rain.svg',
+      'Thunderstorm': 'thunderstorm.svg',
+      'Snow': 'snow.svg',
+      'Mist': 'mist.svg',
+      'Smoke': 'mist.svg',
+      'Haze': 'mist.svg',
+      'Dust': 'wind.svg',
+      'Fog': 'mist.svg',
+      'Sand': 'wind.svg',
+      'Ash': 'mist.svg',
+      'Squall': 'wind.svg',
+      'Tornado': 'wind.svg'
+    };
+    
+    return iconMap[weatherMain] || 'clear.svg';
+  };
+
   const handleCheck = async () => {
     if (!city) return;
     
@@ -76,9 +98,21 @@ export default function Home() {
             <h2 className={styles.weatherTitle}>Weather Information</h2>
             
             {weather && (
-              <div className={styles.cityName}>
-                {weather.name}, {weather.sys.country}
-              </div>
+              <>
+                <div className={styles.cityName}>
+                  {weather.name}, {weather.sys.country}
+                </div>
+                <div className={styles.weatherIconContainer}>
+                  <img 
+                    src={`/icons/${getWeatherIcon(weather.weather[0].main)}`}
+                    alt={weather.weather[0].description}
+                    className={styles.weatherIcon}
+                  />
+                  <div className={styles.mainTemp}>
+                    {Math.round(weather.main.temp)}°C
+                  </div>
+                </div>
+              </>
             )}
             
             {error && (
