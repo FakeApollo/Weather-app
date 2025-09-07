@@ -27,6 +27,7 @@ export default function Home() {
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
       );
       const data = await response.json();
+      console.log('Weather API Response:', data);
       
       if (response.ok) {
         setWeather(data);
