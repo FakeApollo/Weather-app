@@ -15,7 +15,7 @@
 
 .title {
   text-align: center;
-  color: white;
+  color: #faeaff;
   font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 30px;
@@ -32,7 +32,8 @@
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.2), 
     inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-  color: white;
+  color: #faeaff;
+  text-shadow: #ff0071;
 }
 
 .inputSection {
@@ -50,17 +51,17 @@
   border: none;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.15);
-  color: white;
+  color: #faeaff;
   outline: none;
   transition: all 0.3s ease;
 }
 
 .input::placeholder {
-  color: rgb(255, 255, 255);
+  color:#faeaff;
 }
 
 .input:focus {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(129, 128, 128, 0.149);
 }
 
 .button {
@@ -83,7 +84,7 @@
 }
 
 .button:disabled {
-  background: rgba(255, 255, 255, 0.2);
+  background: #faeaff;
   cursor: not-allowed;
   box-shadow: none;
   transform: none;
@@ -127,15 +128,15 @@
 }
 
 .weatherRow strong {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  color:rgb(71, 60, 60);
   margin-bottom: 8px;
   text-transform: uppercase;
   font-weight: 400;
 }
 
 .weatherRow span {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 600;
   color: white;
   text-shadow: 0 2px 6px rgba(0,0,0,0.3);
